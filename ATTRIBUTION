@@ -1,0 +1,11 @@
+# This file contains a list of libraries and other external contributions used in this repository (that end up in the release build in some way or another). When including new dependencies, be sure to include them here. Please try to stick to the format used by the other entries. The list is sorted alphabetically by the name of the dependency.
+# The direct contributors to this repository are listed in the AUTHORS file.
+
+CanvasPlus by Joseph Huckaby ([MIT License](https://github.com/jhuckaby/canvas-plus/blob/master/LICENSE.md))
+https://github.com/jhuckaby/canvas-plus
+
+Fabric.js by Printio ([Fabric.js License](https://github.com/fabricjs/fabric.js/blob/master/LICENSE))
+http://fabricjs.com/
+
+slugify by Sindre Sorhus ([MIT License](https://github.com/sindresorhus/slugify/blob/main/license))
+https://github.com/sindresorhus/slugify

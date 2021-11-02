@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Datenanfragen.de featured image generator</title>
+</head>
+
+<body>
+    <h1>Datenanfragen.de featured image generator</h1>
+    <div class="col col-big">
+        <canvas id="canvas" width="1500" height="860"></canvas>
+    </div>
+    <div class="col col-small">
+        <h2>Image</h2>
+        <div class="option">
+            <label>
+                Image URL:<br>
+                <input type="text" id="img-url" value="https://images.unsplash.com/photo-1542586484-1ba19fe1ad53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=formatfit=crop&w=1600&q=80">
+            </label>
+        </div>
+        <h2>Filter options</h2>
+        <div class="option">
+            <label>
+                Normalize?<br>
+                <input type="checkbox" id="normalize">
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                Curves sliders:<br>
+                <input type="range" min="0" max="255" id="curves_1" value="127">
+                <input type="range" min="0" max="255" id="curves_2" value="98">
+                <input type="range" min="0" max="255" id="curves_3" value="211">
+            </label>
+        </div>
+        <details>
+            <summary>Advanced options</summary>
+            <div class="option">
+                <label>
+                    Effect intensities:<br>
+                    <input type="range" min="0" max="1" step="0.01" id="effect_1" value="0.4">
+                    <input type="range" min="0" max="1" step="0.01" id="effect_2" value="0.8">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    Brightness:<br>
+                    <input type="range" min="-255" max="255" id="brightness" value="0">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    Contrast:<br>
+                    <input type="range" min="-255" max="255" id="contrast" value="0">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    Saturation:<br>
+                    <input type="range" min="-255" max="255" id="saturation" value="0">
+                </label>
+            </div>
+        </details>
+        <h2>Overlay options</h2>
+        <div class="option">
+            <label>
+                Text:<br>
+                <textarea id="text" rows="5">*Musterbrief* für den
+*Werbewiderspruch*</textarea>
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                Site:<br>
+                <select id="site">
+                    <option value="de">Datenanfragen.de</option>
+                    <option value="en">datarequests.org</option>
+                    <option value="fr">demandetesdonnees.fr</option>
+                    <option value="pt">pedidodedados.org</option>
+                    <option value="es">solicituddedatos.es</option>
+                    <option value="hr">osobnipodaci.org</option>
+                </select>
+            </label>
+        </div>
+
+        <details>
+            <summary>Forbidden options</summary>
+            <p>If you are generating a featured image for the website, you almost certainly don't want to change these options.</p>
+            <div class="option">
+                <label>
+                    Margin:<br>
+                    <input type="number" min="0" id="margin" value="150">
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    Color:<br>
+                    <input type="color" id="color" value="#214192">
+                </label>
+            </div>
+        </details>
+
+        <h2>Export</h2>
+        <button id="download">Download image</button>
+    </div>
+    <div class="clearfix"></div>
+
+    <script type="module" src="/src/index.js"></script>
+</body>
+
+</html>

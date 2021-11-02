@@ -1,0 +1,19 @@
+{
+    "name": "featured-image-generator",
+    "version": "1.0.0",
+    "author": "Benjamin Altpeter <hi@bn.al>",
+    "license": "MIT",
+    "dependencies": {
+        "@sindresorhus/slugify": "^2.1.0",
+        "fabric": "^4.6.0",
+        "pixl-canvas-plus": "^2.0.11"
+    },
+    "devDependencies": {
+        "@snowpack/plugin-sass": "^1.4.0",
+        "snowpack": "^3.8.8"
+    },
+    "scripts": {
+        "dev": "snowpack dev",
+        "build": "snowpack build"
+    }
+}
