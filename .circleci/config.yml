@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  build_and_deploy:
+    docker:
+      - image: cimg/node:14.17
+    steps:
+      - checkout
+      - run:
+          command: |
+            yarn
+            yarn build
+            yarn dattel deploy
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build_and_deploy:
+          filters:
+            branches:
+              only: main
