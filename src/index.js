@@ -55,6 +55,7 @@ const get = (id) => {
             pt: await loadSvg('/img/logo-inverted-pt.svg', locked),
             es: await loadSvg('/img/logo-inverted-es.svg', locked),
             hr: await loadSvg('/img/logo-inverted-hr.svg', locked),
+            nl: await loadSvg('/img/logo-inverted-nl.svg', locked),
         },
     };
 
