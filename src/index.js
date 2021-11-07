@@ -60,7 +60,23 @@ const get = (id) => {
     };
 
     const updateObjects = () => {
+        if (get('canvas_auto_size')) {
+            document.getElementById('canvas_width').value = image_canvas.width;
+            document.getElementById('canvas_height').value = image_canvas.height;
+        }
+        document.getElementById('canvas_width').disabled = get('canvas_auto_size');
+        document.getElementById('canvas_height').disabled = get('canvas_auto_size');
+        if (canvas.width !== get('canvas_width') || canvas.height !== get('canvas_height')) {
+            canvas.setWidth(get('canvas_width'));
+            canvas.setHeight(get('canvas_height'));
+            canvas.calcOffset();
+        }
+
         fabric_objects.image.setElement(image_canvas);
+        if (get('canvas_auto_size')) {
+            fabric_objects.image.set('top', 0);
+            fabric_objects.image.set('left', 0);
+        }
 
         fabric_objects.heading.set('width', canvas.width - 2 * get('margin'));
         fabric_objects.heading.set('text', get('text').replace(/\*/g, ''));
@@ -92,10 +108,14 @@ const get = (id) => {
 
         for (const key in fabric_objects.logos) fabric_objects.logos[key].set('visible', false);
         fabric_objects.logos[get('site')].set('visible', get('show_logo'));
+        fabric_objects.logos[get('site')].scale(
+            (fabric_objects.heading.fontSize * fabric_objects.heading.scaleX) / 130
+        );
 
-        fabric_objects.heading.top -= fabric_objects.logos[get('site')].height - 20;
+        fabric_objects.heading.top -=
+            fabric_objects.logos[get('site')].height - 20 * fabric_objects.logos[get('site')].scaleX;
         const heading_pos = fabric_objects.heading.getPointByOrigin('left', 'bottom');
-        fabric_objects.logos[get('site')].top = heading_pos.y + 40;
+        fabric_objects.logos[get('site')].top = heading_pos.y + 40 * fabric_objects.logos[get('site')].scaleX;
         fabric_objects.logos[get('site')].left = heading_pos.x;
 
         canvas.renderAll();
@@ -115,13 +135,26 @@ const get = (id) => {
 
         downloadFile(data_url, `${slugify(get('text'))}.jpg`);
     };
-    for (const id of ['text', 'site', 'margin', 'show_text', 'show_logo', 'show_guides']) {
+    for (const id of [
+        'text',
+        'site',
+        'margin',
+        'show_text',
+        'show_logo',
+        'show_guides',
+        'canvas_width',
+        'canvas_height',
+        'canvas_auto_size',
+    ]) {
         document.getElementById(id).oninput = updateObjects;
     }
     const rebuildImage = async () => {
         image_canvas = await renderImage();
-        fabric_objects.image.setElement(image_canvas);
-        canvas.renderAll();
+        if (get('canvas_auto_size')) updateObjects();
+        else {
+            fabric_objects.image.setElement(image_canvas);
+            canvas.renderAll();
+        }
     };
     for (const id of [
         'normalize',

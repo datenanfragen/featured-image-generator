@@ -6,9 +6,10 @@ h1 {
 }
 canvas,
 .canvas-container {
-    width: 68vw !important;
+    max-width: 68vw !important;
     height: auto !important;
-
+}
+.canvas-container {
     // This is a hack to not have the other column float into here. This whole style is quite horrible but since we
     // aren't going for pretty at this point, why bother going for clean? :D
     min-height: 200px;
