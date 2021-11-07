@@ -67,6 +67,7 @@ const get = (id) => {
         fabric_objects.heading.set('styles', computeStyles(get('text')));
         fabric_objects.heading.set('top', canvas.height / 2);
         fabric_objects.heading.set('left', canvas.width / 2);
+        fabric_objects.heading.set('visible', get('show_text'));
 
         // Scale text to fit within the margins.
         const max_height = canvas.height - 2 * get('margin');
@@ -86,10 +87,11 @@ const get = (id) => {
             fabric_objects.guides[i].set('y1', coords[i].y1);
             fabric_objects.guides[i].set('x2', coords[i].x2);
             fabric_objects.guides[i].set('y2', coords[i].y2);
+            fabric_objects.guides[i].set('visible', get('show_guides'));
         }
 
         for (const key in fabric_objects.logos) fabric_objects.logos[key].set('visible', false);
-        fabric_objects.logos[get('site')].set('visible', true);
+        fabric_objects.logos[get('site')].set('visible', get('show_logo'));
 
         fabric_objects.heading.top -= fabric_objects.logos[get('site')].height - 20;
         const heading_pos = fabric_objects.heading.getPointByOrigin('left', 'bottom');
@@ -113,7 +115,9 @@ const get = (id) => {
 
         downloadFile(data_url, `${slugify(get('text'))}.jpg`);
     };
-    for (const id of ['text', 'site', 'margin']) document.getElementById(id).oninput = updateObjects;
+    for (const id of ['text', 'site', 'margin', 'show_text', 'show_logo', 'show_guides']) {
+        document.getElementById(id).oninput = updateObjects;
+    }
     const rebuildImage = async () => {
         image_canvas = await renderImage();
         fabric_objects.image.setElement(image_canvas);

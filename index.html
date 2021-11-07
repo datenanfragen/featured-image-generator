@@ -98,6 +98,18 @@
             <p>If you are generating a featured image for the website, you almost certainly don't want to change these options.</p>
             <div class="option">
                 <label>
+                    Show text?<br>
+                    <input type="checkbox" id="show_text" checked>
+                </label>
+            </div>
+            <div class="option">
+                <label>
+                    Show logo?<br>
+                    <input type="checkbox" id="show_logo" checked>
+                </label>
+            </div>
+            <div class="option">
+                <label>
                     Margin:<br>
                     <input type="number" min="0" id="margin" value="150">
                 </label>
@@ -109,6 +121,12 @@
                 </label>
             </div>
         </details>
+        <div class="option">
+            <label>
+                Show guides (always hidden in exported image)?<br>
+                <input type="checkbox" id="show_guides" checked>
+            </label>
+        </div>
 
         <h2>Export</h2>
         <button id="download">Download image</button>
