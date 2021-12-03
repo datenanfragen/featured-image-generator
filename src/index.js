@@ -108,8 +108,9 @@ const get = (id) => {
 
         for (const key in fabric_objects.logos) fabric_objects.logos[key].set('visible', false);
         fabric_objects.logos[get('site')].set('visible', get('show_logo'));
+        const logo_width_factor = canvas.width > 1.2 * canvas.height ? 2 : 1.4;
         fabric_objects.logos[get('site')].scale(
-            (fabric_objects.heading.fontSize * fabric_objects.heading.scaleX) / 130
+            (canvas.width - 2 * get('margin')) / logo_width_factor / fabric_objects.logos[get('site')].width
         );
 
         fabric_objects.heading.top -=
